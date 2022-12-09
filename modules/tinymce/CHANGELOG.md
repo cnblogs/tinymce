@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New `isEditable` API to `editor.selection` that returns true or false if the current selection is editable. #TINY-9462
 - New `isEditable` API to `editor.dom` that returns true or false if the specified node is editable. #TINY-9462
+- Inline headers would not work in some situations when the editor was moved too far right horizontally. #TINY-8977
 - New `highlight_on_focus` option which enables highlighting the content area on focus. #TINY-9277
 
 ### Improved
