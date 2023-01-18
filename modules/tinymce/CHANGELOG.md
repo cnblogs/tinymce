@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed a workaround for ensuring stylesheets are loaded in an outdated version of webkit. #TINY-9433
 - Lists in a noneditable root were incorrectly editable using list API commands, toolbar buttons and menu items. #TINY-9458
 - Color picker dialog would not update the preview color if the hex input value was prefixed with `#` symbol. #TINY-9457
-- Selection after inserting a link is now within the link so the context menu and dialog behave correctly straight away. #TINY-7993
+- Fix determining if the current selection contains a link and retrieving its href value. #TINY-7993
 
 ## 6.3.1 - 2022-12-06
 
