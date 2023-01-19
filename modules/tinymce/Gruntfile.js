@@ -32,6 +32,8 @@ const stripSourceMaps = function (data) {
 
 module.exports = function (grunt) {
   const packageData = grunt.file.readJSON('package.json');
+  const scope = process.env.SCOPE || '';
+  packageData.version = (process.env.VERSION || packageData.version).replace(/^[vV]/, '');
   const BUILD_VERSION = packageData.version + (process.env.BUILD_NUMBER ? '-' + process.env.BUILD_NUMBER : '');
 
   // Determine the release date
@@ -572,7 +574,7 @@ module.exports = function (grunt) {
             }));
 
             zip.addData('package.json', jsonToBuffer({
-              'name': 'tinymce',
+              'name': (scope ? scope + '/' : '') + 'tinymce',
               'version': packageData.version,
               'repository': {
                 'type': 'git',
