@@ -1,0 +1,38 @@
+name: Publish to npmjs
+on:
+  push:
+    tags:
+      - v*.*.*
+env:
+  NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Install yarn
+        run: |
+          npm i -g yarn
+          yarn -v
+      - name: Setup version and scope env
+        run: |
+          echo "GITHUB_REF=${GITHUB_REF#refs/*/}"
+          echo "VERSION=${GITHUB_REF#refs/*/}" | sed 's/v//' >> $GITHUB_ENV
+          export VERSION="${{ env.VERSION }}"
+          export SCOPE="@cnblogs"
+          echo "VERSION: ${VERSION}, SCOPE: ${SCOPE}"
+      - name: Install Dependencies
+        run: |
+          yarn install
+      - name: Build
+        run: |
+          yarn build
+      - name: Publish
+        run: |
+          npm publish --access public ./modules/tinymce/dist/tinymce_${VERSION}_component.zip
+
