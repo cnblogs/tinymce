@@ -32,7 +32,7 @@ jobs:
       - name: Publish
         env:
           VERSION: ${{ env.VERSION }}
-          SCOPE: @cnblogs
+          SCOPE: "@cnblogs"
         run: |
           echo "VERSION: ${VERSION}, SCOPE: ${SCOPE}"
           npm publish --access public ./modules/tinymce/dist/tinymce_${VERSION}_component.zip
