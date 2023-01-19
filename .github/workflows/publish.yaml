@@ -35,5 +35,5 @@ jobs:
           SCOPE: "@cnblogs"
         run: |
           echo "VERSION: ${VERSION}, SCOPE: ${SCOPE}"
-          npm publish --access public ./modules/tinymce/dist/tinymce_${VERSION}_component.zip
+          npm run publish-ci
 
