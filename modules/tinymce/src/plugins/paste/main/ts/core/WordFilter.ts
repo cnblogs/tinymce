@@ -51,9 +51,9 @@ const isNumericList = (text: string): boolean => {
     /^[ivxlmcd]+\.[ \u00a0]/,  // Roman lower case
     /^[a-z]{1,2}[\.\)][ \u00a0]/,  // Alphabetical a-z
     /^[A-Z]{1,2}[\.\)][ \u00a0]/,  // Alphabetical A-Z
-    /^[0-9]+\.[ \u00a0]/,          // Numeric lists
+    /^[0-9]+[\.\u0029\uff09][ \u00a0]/,          // Numeric lists
     /^[\u3007\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d]+\.[ \u00a0]/, // Japanese
-    /^[\u58f1\u5f10\u53c2\u56db\u4f0d\u516d\u4e03\u516b\u4e5d\u62fe]+\.[ \u00a0]/  // Chinese
+    /^[\u58f1\u5f10\u53c2\u56db\u4f0d\u516d\u4e03\u516b\u4e5d\u62fe]+\.[ \u00a0]/,  // Chinese
   ];
 
   text = text.replace(/^[\u00a0 ]+/, '');
@@ -201,10 +201,10 @@ const convertFakeListsToProperLists = (node: WordAstNode) => {
         continue;
       }
 
-      // Detect ordered lists 1., a. or ixv.
+      // Detect ordered lists 1., a., 1) or ixv.
       if (isNumericList(nodeText)) {
         // Parse OL start number
-        const matches = /([0-9]+)\./.exec(nodeText);
+        const matches = /([0-9]+)[.\u0029\uff09]/.exec(nodeText);
         let start = 1;
         if (matches) {
           start = parseInt(matches[1], 10);
