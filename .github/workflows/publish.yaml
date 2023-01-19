@@ -27,12 +27,12 @@ jobs:
         run: |
           yarn install
       - name: Build
-        run: |
-          yarn build
-      - name: Publish
         env:
           VERSION: ${{ env.VERSION }}
           SCOPE: "@cnblogs"
+        run: |
+          yarn build
+      - name: Publish
         run: |
           echo "VERSION: ${VERSION}, SCOPE: ${SCOPE}"
           npm run publish-ci
