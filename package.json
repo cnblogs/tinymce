@@ -29,7 +29,8 @@
     "phantomjs-test": "yarn -s grunt phantomjs-auto",
     "phantomjs-test-manual": "yarn -s grunt phantomjs-manual",
     "bedrock": "bedrock --customRoutes modules/tinymce/src/core/test/json/routes.json --polyfills Promise Symbol",
-    "test-one": "yarn tsc && yarn bedrock-auto -b chrome-headless -f"
+    "test-one": "yarn tsc && yarn bedrock-auto -b chrome-headless -f",
+    "publish-ci": "extract-zip ./modules/tinymce/dist/tinymce_${VERSION}_component.zip ${PWD}/modules/tinymce/dist/tinymce_component && npm publish --access public ./modules/tinymce/dist/tinymce_component"
   },
   "devDependencies": {
     "@ephox/bedrock-client": "^11.3.2",
@@ -48,6 +49,7 @@
     "emojilib": "^2.4.0",
     "eslint": "^7.0.0",
     "eslint-plugin-notice": "^0.9.10",
+    "extract-zip": "^2.0.1",
     "fast-check": "^1.18.1",
     "grunt": "^1.0.2",
     "grunt-contrib-clean": "^2.0.0",
